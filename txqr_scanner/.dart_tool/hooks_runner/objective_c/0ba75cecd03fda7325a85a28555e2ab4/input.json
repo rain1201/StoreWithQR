@@ -1,0 +1,29 @@
+{
+  "assets": {},
+  "config": {
+    "build_asset_types": [
+      "code_assets/code"
+    ],
+    "extensions": {
+      "code_assets": {
+        "android": {
+          "target_ndk_api": 24
+        },
+        "c_compiler": {
+          "ar": "D:\\flutter\\SDK\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-ar.exe",
+          "cc": "D:\\flutter\\SDK\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+          "ld": "D:\\flutter\\SDK\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe"
+        },
+        "link_mode_preference": "dynamic",
+        "target_architecture": "arm64",
+        "target_os": "android"
+      }
+    },
+    "linking_enabled": false
+  },
+  "out_dir_shared": "D:\\open\\txqr\\txqr_scanner\\.dart_tool\\hooks_runner\\shared\\objective_c\\build\\",
+  "out_file": "D:\\open\\txqr\\txqr_scanner\\.dart_tool\\hooks_runner\\objective_c\\0ba75cecd03fda7325a85a28555e2ab4\\output.json",
+  "package_name": "objective_c",
+  "package_root": "C:\\Users\\song\\AppData\\Local\\Pub\\Cache\\hosted\\pub.flutter-io.cn\\objective_c-9.2.4\\",
+  "user_defines": {}
+}

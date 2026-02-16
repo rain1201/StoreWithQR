@@ -1,0 +1,148 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+Icon?
+VolumeLabel
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.cov/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Coverage
+.coverage
+.coverage.*
+.cache
+
+# mypy
+.mypy_cache/
+
+# Pyre
+.pyre/
+
+# Flutter
+.txqr_scanner/.dart_tool/
+.txqr_scanner/build/
+.txqr_scanner/ios/.symlinks
+.txqr_scanner/coverage/
+.txqr_scanner/lib/generated_plugin_registrant.dart
+.txqr_scanner/linux/flutter/ephemeral
+.txqr_scanner/windows/flutter/ephemeral
+.txqr_scanner/android/.gradle
+.txqr_scanner/android/.settings
+.txqr_scanner/android/app/.cxx
+.txqr_scanner/android/app/generated
+.txqr_scanner/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+.txqr_scanner/ios/Flutter/.last_build_id
+.txqr_scanner/ios/Pods
+.txqr_scanner/ios/Runner.xcodeproj/project.xcworkspace
+.txqr_scanner/ios/Runner.xcodeproj/xcshareddata
+.txqr_scanner/ios/Runner.xcworkspace
+.txqr_scanner/ios/Podfile.lock
+.txqr_scanner/pubspec.lock
+.txqr_scanner/.flutter-plugins-dependencies
+.txqr_scanner/.metadata
+.txqr_scanner/windows/runner/flutter_window.cpp
+.txqr_scanner/windows/runner/run_loop.cpp
+.txqr_scanner/windows/runner/utils.cpp
+.txqr_scanner/windows/runner/win32_window.cpp
+.txqr_scanner/windows/runner/flutter_window.h
+.txqr_scanner/windows/runner/run_loop.h
+.txqr_scanner/windows/runner/utils.h
+.txqr_scanner/windows/runner/win32_window.h
+.txqr_scanner/windows/runner/Runner.rc
+.txqr_scanner/windows/runner/CMakeFiles
+.txqr_scanner/windows/runner/cmake_install.cmake
+.txqr_scanner/windows/runner/CMakeCache.txt
+.txqr_scanner/windows/runner/runner.exe.manifest
+.txqr_scanner/windows/runner/runner.exe
+.txqr_scanner/windows/flutter/ephemeral/cpp_client_wrapper
+.txqr_scanner/macos/Podfile.lock
+.txqr_scanner/macos/Flutter/ephemeral
+.txqr_scanner/macos/Flutter/GeneratedPluginRegistrant.swift
+.txqr_scanner/macos/Runner/GeneratedPluginRegistrant.swift
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Output files
+qr_backup.pdf
+*.pdf
+*.png
+temp_qr_*.png
+/*.txt
