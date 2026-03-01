@@ -45,7 +45,8 @@ class QRBackupPDF(FPDF):
 
         self.cell(0, 2, compression_info, border=0, align="L")
         self.set_xy(-40, 5)
-        self.cell(30, 2, "CONFIDENTIAL", border=0, align="R")
+        self.set_font("Arial", "", 5)
+        self.cell(30, 2, f"{self.header_right_title}", border=0, align="R")
         self.ln(15) # 页眉下方的间距
 
     def footer(self):
@@ -208,7 +209,8 @@ def gen_tag(chunk, encoding='utf-8'):
 def create_qr_pdf_from_file(input_file, output_file, chunk_size=2100, img_size=400,
                            paper_size='A4', orientation='P', cols=3, rows=4,
                            qr_size=65.0, margin_top=10.0, margin_side=5.0,
-                           compression_enabled=False, compression_level=-1, header_title=None):
+                           compression_enabled=False, compression_level=-1, header_title=None, 
+                           header_right_title=None):
     """
     直接从输入文件创建包含 QR 码的 PDF，不生成中间图片文件。
     支持可选的 ZSTD 压缩功能。
@@ -258,7 +260,7 @@ def create_qr_pdf_from_file(input_file, output_file, chunk_size=2100, img_size=4
     pdf = QRBackupPDF(orientation=orientation, unit="mm", format=paper_size)
     # 尝试添加中文字体，如果不存在则使用默认字体
     try:
-        pdf.add_font("Arial", "", "AlibabaSans-Regular.ttf", uni=True)
+        pdf.add_font("Arial", "", "MiSans-Regular.ttf", uni=True)
     except:
         # 如果字体文件不存在，跳过添加字体
         pass
@@ -266,6 +268,7 @@ def create_qr_pdf_from_file(input_file, output_file, chunk_size=2100, img_size=4
     if header_title is None:
         header_title = pathlib.Path(file_name).stem
     pdf.header_title = header_title
+    pdf.header_right_title = header_right_title
     pdf.file_size = file_size
     pdf.file_encoding = file_encoding
     pdf.file_hash = file_hash
@@ -356,7 +359,8 @@ def main():
                         help='ZSTD 压缩级别 (1-22, 启用压缩); -1 表示不启用压缩 (默认: -1)')
     parser.add_argument('--header-title', type=str, default=None,
                         help='页眉第一行标题，如果为空则使用去除后缀的文件名')
-
+    parser.add_argument('--header-right-title', type=str, default="CONFIDENTIAL",
+                        help='页眉第一行右侧标题，如果为空则使用去除后缀的文件名')
     args = parser.parse_args()
 
     if args.compression_level > 0 and not ZSTD_AVAILABLE:
@@ -378,7 +382,8 @@ def main():
             margin_side=args.margin_side,
             compression_enabled=(args.compression_level > 0),
             compression_level=args.compression_level,
-            header_title=args.header_title
+            header_title=args.header_title,
+            header_right_title=args.header_right_title
         )
         print(f"\n转换完成！PDF 文件已保存为: {args.output_pdf}")
 
