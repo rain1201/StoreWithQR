@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "archive",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/archive-4.0.7",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/archive-4.0.9",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -27,7 +27,7 @@
     },
     {
       "name": "camera",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/camera-0.11.3",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/camera-0.11.4",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -39,7 +39,7 @@
     },
     {
       "name": "camera_avfoundation",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/camera_avfoundation-0.9.23",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/camera_avfoundation-0.9.23+2",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -99,21 +99,9 @@
     },
     {
       "name": "dbus",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/dbus-0.7.11",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/dbus-0.7.12",
       "packageUri": "lib/",
       "languageVersion": "2.17"
-    },
-    {
-      "name": "dio",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/dio-5.9.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "dio_web_adapter",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/dio_web_adapter-2.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
     },
     {
       "name": "fake_async",
@@ -123,7 +111,7 @@
     },
     {
       "name": "ffi",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/ffi-2.1.5",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/ffi-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -201,7 +189,7 @@
     },
     {
       "name": "hooks",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/hooks-1.0.0",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/hooks-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -219,7 +207,7 @@
     },
     {
       "name": "image",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/image-4.7.2",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/image-4.8.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -231,7 +219,7 @@
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/image_picker_android-0.8.13+13",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/image_picker_android-0.8.13+14",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -291,7 +279,7 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/lints-6.0.0",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/lints-6.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -332,12 +320,6 @@
       "languageVersion": "3.2"
     },
     {
-      "name": "mobile_scanner",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/mobile_scanner-7.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
       "name": "native_toolchain_c",
       "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/native_toolchain_c-0.17.4",
       "packageUri": "lib/",
@@ -345,7 +327,7 @@
     },
     {
       "name": "objective_c",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/objective_c-9.2.4",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/objective_c-9.3.0",
       "packageUri": "lib/",
       "languageVersion": "3.10"
     },
@@ -405,13 +387,13 @@
     },
     {
       "name": "permission_handler",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/permission_handler-11.4.0",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/permission_handler-12.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
     {
       "name": "permission_handler_android",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/permission_handler_android-12.1.0",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/permission_handler_android-13.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -441,7 +423,7 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/petitparser-7.0.1",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/petitparser-7.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -459,7 +441,7 @@
     },
     {
       "name": "posix",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/posix-6.0.3",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/posix-6.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -477,7 +459,7 @@
     },
     {
       "name": "source_span",
-      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/source_span-1.10.1",
+      "rootUri": "file:///C:/Users/song/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/source_span-1.10.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },

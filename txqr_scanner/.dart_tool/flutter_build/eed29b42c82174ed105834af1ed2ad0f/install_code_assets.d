@@ -1,1 +1,0 @@
- D:\\open\\txqr\\txqr_scanner\\.dart_tool\\flutter_build\\eed29b42c82174ed105834af1ed2ad0f\\native_assets.json: 
