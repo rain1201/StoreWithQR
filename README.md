@@ -1,11 +1,11 @@
 # 纸质文件存档系统
 
-一个创新的文件长期存储解决方案，通过二维码技术将数字文件高效地存储在纸质媒介上。该系统由两部分组成：一个用于将文件转换为二维码PDF的Python工具，以及一个用于扫描和恢复文件的Flutter移动应用。
+一个创新的文件长期存储解决方案，通过二维码技术将数字文件高效地存储在纸质媒介上。该系统由两部分组成：一个用于将文件转换为二维码 PDF 的 Python 工具，以及一个用于扫描和恢复文件的 Flutter 移动应用。
 
 ## 功能特点
 
 - **高效纸质存储**：将任何类型的数字文件转换为二维码形式，便于打印到纸张上长期保存
-- **智能压缩**：支持ZSTD压缩以减少二维码数量，提高存储密度
+- **智能压缩**：支持 ZSTD 压缩以减少二维码数量，提高存储密度
 - **可靠恢复**：移动应用可快速扫描纸质文档并精确重组原始文件
 - **元数据支持**：二维码中嵌入文件信息（名称、哈希、压缩方式等）确保数据完整性
 - **长期保存**：利用纸张的长期稳定性实现数字文件的持久化存储
@@ -15,51 +15,66 @@
 
 ### 1. 二维码生成器 (Python)
 
-位于 `direct_pdf_generator_with_zstd.py`，提供以下功能：
+位于 `pdf_generator.py`，提供以下功能：
 - 读取任意二进制文件
-- 可选ZSTD压缩以提高存储效率
+- 可选 ZSTD 压缩以提高存储效率
 - 将文件分割成小块并编码为二维码
-- 生成包含二维码网格的PDF文档，优化排版以适应纸张
-- 在PDF页眉中显示文件信息，便于人工识别和管理
+- 生成包含二维码网格的 PDF 文档，优化排版以适应纸张
+- 在 PDF 页眉中显示文件信息，便于人工识别和管理
 
 #### 主要特性
 - 支持自定义二维码大小、布局（行列数），优化纸张利用率
 - 支持多种纸张尺寸（A3、A4、A5、Letter），适应不同存储需求
 - 自动计算文件哈希值以验证长期存储后的数据完整性
 - 在页眉显示文件大小、编码、创建时间等信息，便于档案管理
+- 支持版本 2 协议，数据块格式为 `索引/hash 前缀 | 原始数据`
+- 文本文件自动检测章节标记 (Tag) 并显示
 
 #### 使用方法
 
 ```bash
-python direct_pdf_generator_with_zstd.py [输入文件] [选项]
+python pdf_generator.py [输入文件] [选项]
 ```
 
 常用选项：
-- `-s`, `--chunk-size`: 每个二维码存储的字节数（默认2100）
-- `-o`, `--output-pdf`: 输出PDF文件名（默认qr_backup.pdf）
-- `--compression-level`: ZSTD压缩级别（1-22，-1表示无压缩）
+- `-s`, `--chunk-size`: 每个二维码存储的字节数（默认 2100）
+- `-o`, `--output-pdf`: 输出 PDF 文件名（默认 qr_backup.pdf）
+- `--compression-level`: ZSTD 压缩级别（1-22，-1 表示无压缩）
 - `--paper`: 纸张尺寸（A4、A3、A5、Letter）
-- `--cols`, `--rows`: 每页二维码行列数
+- `--orientation`: 页面方向，P 为纵向，L 为横向（默认 P）
+- `--cols`, `--rows`: 每页二维码行列数（默认 3x4）
+- `--qr-size`: 二维码在 PDF 中的大小 (mm)（默认 65.0）
+- `--margin-top`: 上边距 (mm)（默认 12.0）
+- `--margin-side`: 左右边距 (mm)（默认 5.0）
+- `--version`: 协议版本（1 或 2，默认 2）
+- `--header-title`: 页眉标题（默认使用文件名）
+- `--header-right-title`: 页眉右侧标题（默认 CONFIDENTIAL）
 
 示例：
 ```bash
-# 生成用于打印的PDF（不压缩）
-python direct_pdf_generator_with_zstd.py document.pdf -o output.pdf
+# 生成用于打印的 PDF（不压缩）
+python pdf_generator.py document.pdf -o output.pdf
 
-# 使用ZSTD压缩生成更少的二维码页面
-python direct_pdf_generator_with_zstd.py large_file.zip --compression-level 10 -o compressed_output.pdf
+# 使用 ZSTD 压缩生成更少的二维码页面
+python pdf_generator.py large_file.zip --compression-level 10 -o compressed_output.pdf
 
 # 自定义每页布局以优化纸张使用
-python direct_pdf_generator_with_zstd.py image.jpg --cols 4 --rows 5 -o custom_layout.pdf
+python pdf_generator.py image.jpg --cols 4 --rows 5 -o custom_layout.pdf
+
+# 使用版本 2 协议和自定义页眉
+python pdf_generator.py important.txt --version 2 --header-title "重要文档" --header-right-title "机密"
+
+# 横向打印，更大的二维码
+python pdf_generator.py data.bin --orientation L --qr-size 75 -o landscape.pdf
 ```
 
-### 2. 二维码扫描器 (Flutter移动应用)
+### 2. 二维码扫描器 (Flutter 移动应用)
 
-位于 `txqr_scanner` 目录，是一个完整的Flutter应用程序，专门用于从纸质文档中恢复数字文件，具有以下功能：
+位于 `txqr_scanner` 目录，是一个完整的 Flutter 应用程序，专门用于从纸质文档中恢复数字文件，具有以下功能：
 - 实时摄像头扫描纸质文档上的二维码
-- 解析TXQR协议数据
+- 解析 TXQR 协议数据
 - 重组原始文件
-- 支持ZSTD解压缩
+- 支持 ZSTD 解压缩
 - 自动保存文件到设备存储
 
 #### 主要特性
@@ -68,7 +83,7 @@ python direct_pdf_generator_with_zstd.py image.jpg --cols 4 --rows 5 -o custom_l
 - 自动唤醒锁定防止屏幕关闭，确保长时间扫描过程不被打断
 - 部分数据导出功能
 - 元数据查看和确认
-- Android和iOS平台支持
+- Android 和 iOS 平台支持
 
 #### 用户界面
 - 扫描界面：实时摄像头预览，突出显示检测到的二维码区域
@@ -78,9 +93,11 @@ python direct_pdf_generator_with_zstd.py image.jpg --cols 4 --rows 5 -o custom_l
 
 ## 技术细节
 
-### TXQR协议
-- 元数据块：第一个二维码包含JSON格式的文件信息
-- 数据块：后续二维码包含二进制数据，格式为 `索引/块大小/总大小|原始数据`
+### TXQR 协议
+- **元数据块**：第一个二维码包含 JSON 格式的文件信息（文件名、压缩方式、哈希、分块大小、总块数等）
+- **数据块**：后续二维码包含二进制数据
+  - 版本 1 格式：`索引/块大小/总大小 | 原始数据`
+  - 版本 2 格式：`索引/hash 前缀 | 原始数据`
 
 ### 纸质存储的优势
 - **耐久性**：优质纸张在适当条件下可保存数百年
@@ -91,38 +108,38 @@ python direct_pdf_generator_with_zstd.py image.jpg --cols 4 --rows 5 -o custom_l
 
 ### 依赖项
 
-#### Python端
+#### Python 端
 - `Pillow`：图像处理
 - `qrcode`：二维码生成
-- `fpdf`：PDF生成
-- `zstandard`：ZSTD压缩（可选）
+- `fpdf`：PDF 生成
+- `zstandard`：ZSTD 压缩（可选）
 - `chardet`：字符编码检测
 
-#### Flutter端
+#### Flutter 端
 - `flutter_zxing`：二维码解码
 - `camera`：摄像头控制
 - `permission_handler`：权限管理
 - `path_provider`：路径管理
-- `media_store_plus`：Android媒体存储
+- `media_store_plus`：Android 媒体存储
 - `wakelock_plus`：屏幕常亮
-- `zstandard`：ZSTD解压缩
+- `zstandard`：ZSTD 解压缩
 
 ## 安装说明
 
-### Python端
+### Python 端
 
 1. 克隆或下载项目
-2. 安装Python依赖：
+2. 安装 Python 依赖：
 ```bash
-pip install Pillow qrcode[fills] fpdf2 zstandard chardet
+pip install Pillow qrcode[pil] fpdf zstandard chardet
 ```
 3. 运行生成器脚本
 
-### Flutter端
+### Flutter 端
 
 1. 克隆或下载项目
-2. 进入`txqr_scanner`目录
-3. 安装Flutter依赖：
+2. 进入 `txqr_scanner` 目录
+3. 安装 Flutter 依赖：
 ```bash
 flutter pub get
 ```
@@ -140,7 +157,7 @@ flutter run
 
 ## 注意事项
 
-- 二维码PDF文档需要高质量打印以确保长期可扫描性
+- 二维码 PDF 文档需要高质量打印以确保长期可扫描性
 - 文件越大，所需的二维码数量越多，存储成本相应增加
 - 压缩可以显著减少二维码数量，提高存储效率，特别是对于文本文件
 - 存储环境应干燥、避光，以延长纸张和二维码的使用寿命
@@ -150,10 +167,10 @@ flutter run
 
 ## 开发与贡献
 
-欢迎提交Issue和Pull Request来改进此项目。主要开发语言为Python和Dart/Flutter。
+欢迎提交 Issue 和 Pull Request 来改进此项目。主要开发语言为 Python 和 Dart/Flutter。
 
 ## 致谢
 
 - 使用了多个开源库来实现核心功能
-- 受到了[TxQR](https://github.com/divan/txqr)项目启发
-- 本项目几乎完全由`Qwen-coder`实现
+- 受到了 [TxQR](https://github.com/divan/txqr) 项目启发，本项目的version 1保持与其完全兼容
+- 本项目几乎完全由 `Qwen-coder` 实现
