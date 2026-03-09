@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // 用于剪贴板功能
@@ -49,6 +50,7 @@ class _MobileQRScannerScreenState extends State<MobileQRScannerScreen> {
   bool _isCompressed = false;// 添加压缩相关变量
   int _compressionLevel = -1;
   int _version = 1;
+  int _chunkSize = 0;
   String _hash = '';
 
   bool _inited = false;
@@ -476,12 +478,16 @@ Future<void> _saveFile(Uint8List content, String fileName) async {
     int totalChunks = metadata['total_chunks'] ?? 0;
     int fileSize = metadata['file_size'] ?? 0;
     int version = metadata['version'] ?? 1;
-    _initDecoder(totalChunks: totalChunks, fileSize: fileSize, filename: filename, compression: compression, compressionLevel: compressionLevel,version: version,hash: hash);
+    _initDecoder(totalChunks: totalChunks, fileSize: fileSize, filename: filename,
+                compression: compression, compressionLevel: compressionLevel,version: version,
+                hash: hash,chunkSize: chunkSize);
 
     _showSnackBar('File info updated from metadata: $filename', Colors.green);
   }
 
-  void _initDecoder({required int totalChunks, required int fileSize, String filename="", bool compression=false, int compressionLevel=-1,int version=1,required String hash}) {
+  void _initDecoder({required int totalChunks, required int fileSize, String filename="",
+                     bool compression=false, int compressionLevel=-1,int version=1,
+                     required String hash,int chunkSize=0}) {
     _resetDecoder();
 
     // 更新UI状态
@@ -499,6 +505,7 @@ Future<void> _saveFile(Uint8List content, String fileName) async {
       _inited = true;
       _version = version;
       _hash = hash;
+      _chunkSize = chunkSize;
     });
   }
 
@@ -529,7 +536,12 @@ Future<void> _saveFile(Uint8List content, String fileName) async {
     }
 
     // Calculate expected chunk size
-    int expectedChunkSize = (_totalSize / _totalChunks).ceil();
+    int expectedChunkSize = 0;
+    if(_chunkSize>0){
+      expectedChunkSize = _chunkSize;
+    }else{
+      expectedChunkSize = _receivedChunks.map((chunk) => chunk.length).fold(0, (prev, len) => max(prev, len));
+    }
 
     // Create a complete data buffer filled with zeros
     Uint8List completeData = Uint8List(_totalSize);
