@@ -232,7 +232,7 @@ Future<Uint8List> _decompressData(Uint8List compressedData) async {
     final zstandard = Zstandard();
     // 使用 zstandard 库进行解压缩
     Uint8List decompressedData = await zstandard.decompress(compressedData)??(Uint8List(0));
-    print('Successfully decompressed data from ${compressedData.length} to ${decompressedData.length} bytes');
+
     return decompressedData;
   } catch (e) {
     _showSnackBar('Decompression failed: $e', Colors.red);
@@ -288,7 +288,7 @@ Future<void> _saveFile(Uint8List content, String fileName) async {
     _resetDecoder(); // 重置解码器
 
   } catch (e) {
-    print('Error saving file: $e');
+
     _showSnackBar('保存失败: $e', Colors.red);
   }
 }
@@ -552,9 +552,7 @@ Future<void> _saveFile(Uint8List content, String fileName) async {
       if (chunk.isNotEmpty) {
         int startPos = i * expectedChunkSize;
         int endPos = startPos + chunk.length;
-        if(chunk.length>expectedChunkSize){
-          _showSnackBar("expected length <$expectedChunkSize, get ${chunk.length}", Colors.red);
-        }
+
         // Ensure we don't exceed the total size
         if (startPos < _totalSize) {
           if (endPos > _totalSize) {
@@ -643,7 +641,7 @@ Future<void> _saveFile(Uint8List content, String fileName) async {
                     // 获取 CameraController 以控制 Zoom 和 Flash
                     onControllerCreated: (CameraController? controller,Exception? e) async {
                       if (e != null) {
-                        print("Error creating camera controller: $e");
+                        debugPrint("Error creating camera controller: $e");
                         return;
                       }
                        _cameraController = controller;
